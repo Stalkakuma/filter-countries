@@ -124,7 +124,6 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         mt={2}
         overflowY={"auto"}
         maxH={"calc(100vh - 15rem)"}
-        minH={"calc(100vh - 15rem)"}
         p={3}
         as={motion.div}
       >
