@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import { Country } from "../lib/types";
 import { Sort } from "./Sort";
 import { Pagination } from "./Pagination";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CountriesProps {
   countries: Country[];
@@ -125,17 +126,20 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         maxH={"calc(100vh - 15rem)"}
         minH={"calc(100vh - 15rem)"}
         p={3}
+        as={motion.div}
       >
-        {filteredCountriesListed
-          .slice(indexOfFirstCountry, indexOfLastCountry)
-          .map((country, index) => (
-            <Card
-              key={index}
-              name={country.name}
-              region={country.region}
-              area={country.area}
-            />
-          ))}
+        <AnimatePresence>
+          {filteredCountriesListed
+            .slice(indexOfFirstCountry, indexOfLastCountry)
+            .map((country, index) => (
+              <Card
+                key={index}
+                name={country.name}
+                region={country.region}
+                area={country.area}
+              />
+            ))}
+        </AnimatePresence>
       </Flex>
     </>
   );

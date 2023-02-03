@@ -20,6 +20,9 @@ export const Card = ({ name, region, area }: Country) => {
       onMouseLeave={() => setIsActive(false)}
       transition={"ease 0.07s"}
       _hover={{ transform: "scale(1.01)" }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
     >
       <Heading
         alignSelf={{ md: "start", base: "center" }}
@@ -38,11 +41,7 @@ export const Card = ({ name, region, area }: Country) => {
           </Text>
         </GridItem>
         {area && (
-          <GridItem
-            alignSelf={"end"}
-            // colStart={{ md: 2, base: 6 }}
-            justifySelf={"center"}
-          >
+          <GridItem alignSelf={"end"} justifySelf={"center"}>
             <Text fontSize={"xs"} color={"menuGray"}>
               Area
             </Text>
@@ -52,11 +51,7 @@ export const Card = ({ name, region, area }: Country) => {
           <Text fontSize={"lg"}>{region}</Text>
         </GridItem>
         {area && (
-          <GridItem
-            rowStart={2}
-            // colStart={{ md: 2, base: 6 }}
-            justifySelf={"center"}
-          >
+          <GridItem rowStart={2} justifySelf={"center"}>
             <Text fontSize={"lg"}>
               {`${area} km`}
               <Text as={"sup"}>2</Text>
@@ -64,7 +59,6 @@ export const Card = ({ name, region, area }: Country) => {
           </GridItem>
         )}
       </Grid>
-      <Flex></Flex>
     </Flex>
   );
 };
