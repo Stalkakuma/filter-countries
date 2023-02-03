@@ -6,9 +6,11 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import { fetchCountries } from "@/lib/queries/fetch-countries";
+import { Spinner } from "@chakra-ui/react";
 
 const Home: InferGetServerSidePropsType<typeof getServerSideProps> = () => {
   const { data } = useQuery("countries", fetchCountries);
+
   return (
     <>
       <Head>
@@ -17,9 +19,8 @@ const Home: InferGetServerSidePropsType<typeof getServerSideProps> = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* TODO: Implement my own icon <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      {/* TODO: Implement Loading */}
       <Flex as={"main"} flexDir={"column"} maxW={"1000px"} m={"0 auto"}>
-        {data ? <Countries countries={data} /> : "..."}
+        {data ? <Countries countries={data} /> : <LoadingScreen />}
       </Flex>
     </>
   );
@@ -34,3 +35,17 @@ const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 export default Home;
+
+const LoadingScreen = () => {
+  return (
+    <Flex maxW={"1000px"} justify={"center"} align={"center"} minH={"100vh"}>
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    </Flex>
+  );
+};
