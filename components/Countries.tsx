@@ -62,10 +62,16 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         : byArea
     );
 
+  const clearInput = () => {
+    setCountryName("");
+  };
+
   return (
     <>
       <Flex flexDir={"column"} gap={5} mt={"4rem"} p={3}>
         <Search
+          countryName={countryName}
+          clearInput={() => clearInput()}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setCountryName(e.target.value);
           }}

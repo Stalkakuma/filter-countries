@@ -1,8 +1,16 @@
 import { ChangeEventHandler } from "react";
 import { Input, Flex } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 
-export const Search = ({ onChange }: { onChange: ChangeEventHandler }) => {
+export const Search = ({
+  onChange,
+  countryName,
+  clearInput,
+}: {
+  onChange: ChangeEventHandler;
+  countryName: string;
+  clearInput: () => void;
+}) => {
   return (
     <Flex
       align={"center"}
@@ -16,8 +24,20 @@ export const Search = ({ onChange }: { onChange: ChangeEventHandler }) => {
         paddingInlineEnd={"40px"}
         onChange={onChange}
         placeholder={"Type a country name..."}
+        value={countryName}
       />
-      <SearchIcon position={"absolute"} right={"16px"} zIndex={"docked"} />
+      {countryName.length ? (
+        <CloseIcon
+          cursor={"pointer"}
+          position={"absolute"}
+          right={"16px"}
+          zIndex={"docked"}
+          onClick={clearInput}
+          _hover={{ color: "activeOrange" }}
+        />
+      ) : (
+        <SearchIcon position={"absolute"} right={"16px"} zIndex={"docked"} />
+      )}
     </Flex>
   );
 };
