@@ -31,15 +31,8 @@ export const Pagination: FC<PaginationProps> = ({
     return <Flex w={"12px"}></Flex>;
   };
 
-  return (
-    <Flex
-      as={List}
-      gap={1}
-      justify={"center"}
-      align={"center"}
-      w={"100%"}
-      h={"100%"}
-    >
+  const LeftArrow = () => (
+    <>
       {currentPage > 1 ? (
         <ListItem
           onClick={() => onPageChange(currentPage - 1)}
@@ -55,42 +48,10 @@ export const Pagination: FC<PaginationProps> = ({
       ) : (
         <EmptyArrow />
       )}
-      {currentPage > paginationPerPage ? (
-        <ListItem
-          alignSelf={"end"}
-          onClick={() => onPageChange(currentPage - paginationPerPage)}
-          color={"menuGray"}
-          cursor={"pointer"}
-          _hover={{ color: "activeOrange" }}
-        >
-          ...
-        </ListItem>
-      ) : (
-        <EmptyDots />
-      )}
-      {pages
-        .slice(indexOfCurrentPagination, paginationPerPage + currentPage - 3)
-        .map((page) => (
-          <PaginationItem
-            key={page}
-            page={page}
-            currentPage={currentPage}
-            onPageChange={onPageChange}
-          />
-        ))}
-      {isThereMorePagination ? (
-        <ListItem
-          onClick={() => onPageChange(currentPage + paginationPerPage)}
-          color={"menuGray"}
-          cursor={"pointer"}
-          _hover={{ color: "activeOrange" }}
-          alignSelf={"end"}
-        >
-          ...
-        </ListItem>
-      ) : (
-        <EmptyDots />
-      )}
+    </>
+  );
+  const RightArrow = () => (
+    <>
       {currentPage < pagesCount ? (
         <ListItem
           onClick={() => onPageChange(currentPage + 1)}
@@ -106,6 +67,67 @@ export const Pagination: FC<PaginationProps> = ({
       ) : (
         <EmptyArrow />
       )}
+    </>
+  );
+  const LeftDots = () => (
+    <>
+      {currentPage > paginationPerPage ? (
+        <ListItem
+          alignSelf={"end"}
+          onClick={() => onPageChange(currentPage - paginationPerPage)}
+          color={"menuGray"}
+          cursor={"pointer"}
+          _hover={{ color: "activeOrange" }}
+        >
+          ...
+        </ListItem>
+      ) : (
+        <EmptyDots />
+      )}
+    </>
+  );
+
+  const RightDots = () => (
+    <>
+      {isThereMorePagination ? (
+        <ListItem
+          onClick={() => onPageChange(currentPage + paginationPerPage)}
+          color={"menuGray"}
+          cursor={"pointer"}
+          _hover={{ color: "activeOrange" }}
+          alignSelf={"end"}
+        >
+          ...
+        </ListItem>
+      ) : (
+        <EmptyDots />
+      )}
+    </>
+  );
+
+  return (
+    <Flex
+      as={List}
+      gap={1}
+      justify={"center"}
+      align={"center"}
+      w={"100%"}
+      h={"100%"}
+    >
+      <LeftArrow />
+      <LeftDots />
+      {pages
+        .slice(indexOfCurrentPagination, paginationPerPage + currentPage - 3)
+        .map((page) => (
+          <PaginationItem
+            key={page}
+            page={page}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+          />
+        ))}
+      <RightDots />
+      <RightArrow />
     </Flex>
   );
 };
