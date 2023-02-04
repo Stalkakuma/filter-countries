@@ -106,14 +106,12 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             overflow={"hidden"}
           >
             <Flex justify={"center"}>
-              {filteredCountriesListed && (
-                <Pagination
-                  currentPage={currentPage}
-                  onPageChange={(page) => setCurrentPage(page)}
-                  total={filteredCountriesListed.length}
-                  limit={countriesPerPage}
-                />
-              )}
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={(page) => setCurrentPage(page)}
+                total={filteredCountriesListed.length}
+                limit={countriesPerPage}
+              />
             </Flex>
           </GridItem>
           <GridItem colStart={{ md: 8 }} colEnd={{ md: 9 }}>
@@ -131,17 +129,16 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         as={motion.div}
       >
         <AnimatePresence>
-          {filteredCountriesListed &&
-            filteredCountriesListed
-              .slice(indexOfFirstCountry, indexOfLastCountry)
-              .map((country, index) => (
-                <Card
-                  key={index}
-                  name={country.name}
-                  region={country.region}
-                  area={country.area}
-                />
-              ))}
+          {filteredCountriesListed
+            .slice(indexOfFirstCountry, indexOfLastCountry)
+            .map((country, index) => (
+              <Card
+                key={index}
+                name={country.name}
+                region={country.region}
+                area={country.area}
+              />
+            ))}
         </AnimatePresence>
       </Flex>
     </>

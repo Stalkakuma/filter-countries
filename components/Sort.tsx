@@ -5,6 +5,8 @@ import {
   MenuItemOption,
   MenuOptionGroup,
   Button,
+  Heading,
+  Flex,
 } from "@chakra-ui/react";
 import { ArrowUpDownIcon } from "@chakra-ui/icons";
 import { MouseEventHandler } from "react";
@@ -18,8 +20,10 @@ export const Sort = ({ onClick }: { onClick: MouseEventHandler }) => {
   return (
     <Menu>
       <MenuButton variant={"solid"} h={"100%"} w={"100%"} as={Button}>
-        <ArrowUpDownIcon />
-        Sort
+        <Flex align={"center"} gap={1}>
+          <Heading as={"h3"}>Sort</Heading>
+          <ArrowUpDownIcon boxSize={"21px"} />
+        </Flex>
       </MenuButton>
       <MenuList>
         <MenuOptionGroup
