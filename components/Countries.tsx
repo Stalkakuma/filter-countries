@@ -33,6 +33,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
   const filters: string[] = ["Oceania", "area"];
 
   const handleFilterClick = (e: MouseEvent) => {
+    setCurrentPage(1);
     const el = e.target as HTMLElement;
     el.textContent === filters[0]
       ? setIsOcFilterActive(!isOcFilterActive)
@@ -105,12 +106,14 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             overflow={"hidden"}
           >
             <Flex justify={"center"}>
-              <Pagination
-                currentPage={currentPage}
-                onPageChange={(page) => setCurrentPage(page)}
-                total={filteredCountriesListed.length}
-                limit={countriesPerPage}
-              />
+              {filteredCountriesListed && (
+                <Pagination
+                  currentPage={currentPage}
+                  onPageChange={(page) => setCurrentPage(page)}
+                  total={filteredCountriesListed.length}
+                  limit={countriesPerPage}
+                />
+              )}
             </Flex>
           </GridItem>
           <GridItem colStart={{ md: 8 }} colEnd={{ md: 9 }}>
@@ -128,16 +131,17 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         as={motion.div}
       >
         <AnimatePresence>
-          {filteredCountriesListed
-            .slice(indexOfFirstCountry, indexOfLastCountry)
-            .map((country, index) => (
-              <Card
-                key={index}
-                name={country.name}
-                region={country.region}
-                area={country.area}
-              />
-            ))}
+          {filteredCountriesListed &&
+            filteredCountriesListed
+              .slice(indexOfFirstCountry, indexOfLastCountry)
+              .map((country, index) => (
+                <Card
+                  key={index}
+                  name={country.name}
+                  region={country.region}
+                  area={country.area}
+                />
+              ))}
         </AnimatePresence>
       </Flex>
     </>

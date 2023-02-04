@@ -24,10 +24,6 @@ export const Pagination: FC<PaginationProps> = ({
   const isThereMorePagination =
     pagesCount > currentPage - 1 + paginationPerPage;
 
-  if (currentPage > pagesCount) {
-    onPageChange(1);
-  }
-
   const EmptyDots = () => {
     return <Flex w={"13.3px"}></Flex>;
   };
