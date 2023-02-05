@@ -6,6 +6,16 @@ A Web-app designed to get a list of countries using [restcountries](https://rest
 
 This app is deployed using Vercel and can be inspected [here](https://filter-countries.vercel.app/)
 
+### Things Implemented
+  
+1. Fetch, cache and display data from the API
+2. List to display data
+3. Make the list sortable alphabetically by name (ascending, descending).
+4. Implement a filter(s) that filters countries: 
+ ..* That are smaller than Lithuania by area.
+ 
+
+
 ### Things to do
 
 1. Filter and Sort buttons need indication that they are applied or not.
