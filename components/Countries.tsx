@@ -75,6 +75,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
           countryName={countryName}
           clearInput={() => clearInput()}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setCurrentPage(1);
             setCountryName(e.target.value);
           }}
         />

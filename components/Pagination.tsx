@@ -19,8 +19,9 @@ export const Pagination: FC<PaginationProps> = ({
 }) => {
   const pagesCount = Math.ceil(total / limit);
   const pages = range(1, pagesCount);
+  const paginationOffSet = currentPage - 3;
   const paginationPerPage = 5;
-  const indexOfCurrentPagination = currentPage - 3 < 1 ? 0 : currentPage - 3;
+  const indexOfCurrentPagination = paginationOffSet < 1 ? 0 : paginationOffSet;
   const isThereMorePagination =
     pagesCount > currentPage - 1 + paginationPerPage;
 
@@ -117,7 +118,7 @@ export const Pagination: FC<PaginationProps> = ({
       <LeftArrow />
       <LeftDots />
       {pages
-        .slice(indexOfCurrentPagination, paginationPerPage + currentPage - 3)
+        .slice(indexOfCurrentPagination, paginationPerPage + paginationOffSet)
         .map((page) => (
           <PaginationItem
             key={page}
