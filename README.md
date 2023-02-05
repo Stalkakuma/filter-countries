@@ -12,7 +12,8 @@ This app is deployed using Vercel and can be inspected [here](https://filter-cou
 2. List to display data
 3. Make the list sortable alphabetically by name (ascending, descending).
 4. Implement a filter(s) that filters countries: 
- ..* That are smaller than Lithuania by area.
+ ⋅⋅1. That are smaller than Lithuania by area.
+ 
  
 
 
