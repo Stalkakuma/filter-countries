@@ -25,6 +25,7 @@ export const Search = ({
         onChange={onChange}
         placeholder={"Type a country name..."}
         value={countryName}
+        focusBorderColor={"activeOrange"}
       />
       {countryName.length ? (
         <CloseIcon
