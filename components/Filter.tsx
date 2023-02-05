@@ -1,36 +1,46 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItemOption,
+  MenuOptionGroup,
+  Button,
+} from "@chakra-ui/react";
 import { capitalize } from "@/lib/utils";
 import { MouseEventHandler } from "react";
 
+interface FilterType {
+  filter: string;
+  category?: string;
+  options: string[];
+}
+
 export const Filter = ({
-  title,
-  isActive,
+  filter,
   onClick,
 }: {
-  title: string;
-  isActive: boolean;
+  filter: FilterType;
   onClick: MouseEventHandler;
 }) => {
   return (
-    <Flex
-      py={1}
-      px={2}
-      bg={isActive ? "activeOrange" : "white"}
-      color={isActive ? "white" : "black"}
-      cursor={"pointer"}
-      justify={"center"}
-      alignItems={"center"}
-      borderRadius={"md"}
-      border={"1px solid black"}
-      boxShadow={isActive ? "1px 1px black" : "0.2px 0.2px black"}
-      transition={"ease-in 0.08s"}
-      _hover={{
-        transform: "scale(1.03)",
-        bg: isActive ? "" : "var(--chakra-colors-gray-200)",
-      }}
-      onClick={onClick}
-    >
-      <Heading as={"h3"}>{capitalize(title)}</Heading>
-    </Flex>
+    <Menu>
+      <MenuButton variant="solid" h="100%" w="100%" as={Button}>
+        {filter.filter}
+      </MenuButton>
+      <MenuList>
+        <MenuOptionGroup
+          key={filter.filter}
+          defaultValue="none"
+          title={filter.category}
+          type="radio"
+        >
+          {filter.options.map((option) => (
+            <MenuItemOption key={option} onClick={onClick} value={option}>
+              {capitalize(option)}
+            </MenuItemOption>
+          ))}
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
   );
 };

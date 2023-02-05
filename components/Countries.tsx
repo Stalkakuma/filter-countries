@@ -1,4 +1,4 @@
-import { Grid, GridItem, Flex, VStack } from "@chakra-ui/react";
+import { Grid, GridItem, Flex, VStack, Heading } from "@chakra-ui/react";
 import { useState, MouseEvent, ChangeEvent, FC } from "react";
 import { Filter } from "./Filter";
 import { Search } from "./Search";
@@ -15,54 +15,64 @@ interface CountriesProps {
 export const Countries: FC<CountriesProps> = ({ countries }) => {
   const countriesPerPage = 10;
   const areaOfLithuania = 65300;
-  const [countriesListed, setCountriesListed] = useState(countries);
   const [countryName, setCountryName] = useState("");
-  const [isOcFilterActive, setIsOcFilterActive] = useState(false);
-  const [isAreaFilterActive, setIsAreaFilterActive] = useState(false);
+  const [regionFilter, setRegionFilter] = useState("");
+  const [areaOfLithuaniaFilter, setAreaOfLithuaniaFilter] = useState("");
+  const [sortFilter, setSortFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
 
-  const countriesSortedAlphAsc = [...countries].sort((a, b) =>
-    a.name > b.name ? 1 : -1
-  );
-  const countriesSortedAlphDesc = [...countries].sort((a, b) =>
-    a.name > b.name ? -1 : 1
-  );
+  const filters = [
+    {
+      filter: "Area",
+      category: "Lithuania",
+      options: ["none", "smaller", "larger"],
+    },
+    {
+      filter: "Region",
+      options: ["none", "Oceania", "Europe", "Asia", "Africa"],
+    },
+  ];
 
-  const filters: string[] = ["Oceania", "area"];
-
-  const handleFilterClick = (e: MouseEvent) => {
+  const handleAreaFilterClick = (e: MouseEvent) => {
     setCurrentPage(1);
     const el = e.target as HTMLElement;
-    el.textContent === filters[0]
-      ? setIsOcFilterActive(!isOcFilterActive)
-      : setIsAreaFilterActive(!isAreaFilterActive);
+    setAreaOfLithuaniaFilter(el.textContent as string);
+  };
+
+  const handleRegionFilterClick = (e: MouseEvent) => {
+    setCurrentPage(1);
+    const el = e.target as HTMLElement;
+    setRegionFilter(el.textContent as string);
   };
 
   const handleSort = (e: MouseEvent) => {
     const element = e.target as HTMLElement;
-    setCountriesListed(
-      element.textContent === "Ascending (A-Z)"
-        ? countriesSortedAlphAsc
-        : element.textContent === "Descending (Z-A)"
-        ? countriesSortedAlphDesc
-        : countries
-    );
+    setSortFilter(element.textContent as string);
   };
 
-  const filteredCountriesListed = countriesListed
-    ?.filter((byInp) =>
-      byInp.name.toLowerCase().includes(countryName.toLowerCase())
-    )
-    .filter((byOcea) =>
-      isOcFilterActive ? byOcea.region.includes(filters[0]) : byOcea
-    )
-    .filter((byArea) =>
-      isAreaFilterActive && byArea.area
-        ? byArea.area <= areaOfLithuania
-        : byArea
-    );
+  const filteredCountriesListed =
+    sortFilter === "Descending (Z-A)"
+      ? [...countries].sort((a, b) => (a.name > b.name ? -1 : 1))
+      : sortFilter === "Ascending (A-Z)"
+      ? [...countries].sort((a, b) => (a.name > b.name ? 1 : -1))
+      : [...countries]
+          .filter((byInp) =>
+            byInp.name.toLowerCase().includes(countryName.toLowerCase())
+          )
+          .filter((byRegion) =>
+            regionFilter !== "None"
+              ? byRegion.region.includes(regionFilter)
+              : byRegion
+          )
+          .filter((byArea) =>
+            byArea.area && areaOfLithuaniaFilter === "Smaller"
+              ? byArea.area <= areaOfLithuania
+              : byArea.area && areaOfLithuaniaFilter === "Larger"
+              ? byArea.area > areaOfLithuania
+              : byArea
+          );
 
   const clearInput = () => {
     setCountryName("");
@@ -79,46 +89,52 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             setCountryName(e.target.value);
           }}
         />
-
-        <Grid
-          gridTemplateColumns={{ md: "repeat(8, 1fr)", base: "repeat(4, 1fr)" }}
-          gridTemplateRows={{ base: "repeat(2, 1fr)", md: "repeat(1, 1fr)" }}
-          gap={{ base: 2, md: 5 }}
-        >
-          {filters.map((filter, index) => {
-            return (
-              <GridItem key={index}>
-                <Filter
-                  title={filter}
-                  isActive={
-                    filter === filters[0]
-                      ? isOcFilterActive
-                      : isAreaFilterActive
-                  }
-                  onClick={(e: MouseEvent) => handleFilterClick(e)}
-                />
-              </GridItem>
-            );
-          })}
-          <GridItem
-            colStart={{ md: 3, base: 1 }}
-            colEnd={{ md: 8, base: 4 }}
-            rowStart={{ md: 1, base: 2 }}
-            overflow="hidden"
+        <VStack>
+          <Heading alignSelf={"start"} as="h2">
+            Filters
+          </Heading>
+          <Grid
+            gridTemplateColumns={{
+              md: "repeat(8, 1fr)",
+              base: "repeat(4, 1fr)",
+            }}
+            gridTemplateRows={{ base: "repeat(2, 1fr)", md: "repeat(1, 1fr)" }}
+            gap={{ base: 2, md: 5 }}
           >
-            <Flex justify="center">
-              <Pagination
-                currentPage={currentPage}
-                onPageChange={(page) => setCurrentPage(page)}
-                total={filteredCountriesListed.length}
-                limit={countriesPerPage}
-              />
-            </Flex>
-          </GridItem>
-          <GridItem colStart={{ md: 8 }} colEnd={{ md: 9 }}>
-            <Sort onClick={(e: MouseEvent) => handleSort(e)} />
-          </GridItem>
-        </Grid>
+            {filters.map((filter, index) => {
+              return (
+                <GridItem key={index}>
+                  <Filter
+                    filter={filter}
+                    onClick={
+                      filter.category
+                        ? (e: MouseEvent) => handleAreaFilterClick(e)
+                        : (e: MouseEvent) => handleRegionFilterClick(e)
+                    }
+                  />
+                </GridItem>
+              );
+            })}
+            <GridItem
+              colStart={{ md: 3, base: 1 }}
+              colEnd={{ md: 8, base: 4 }}
+              rowStart={{ md: 1, base: 2 }}
+              overflow="hidden"
+            >
+              <Flex justify="center">
+                <Pagination
+                  currentPage={currentPage}
+                  onPageChange={(page) => setCurrentPage(page)}
+                  total={filteredCountriesListed.length}
+                  limit={countriesPerPage}
+                />
+              </Flex>
+            </GridItem>
+            <GridItem colStart={{ md: 8 }} colEnd={{ md: 9 }}>
+              <Sort onClick={(e: MouseEvent) => handleSort(e)} />
+            </GridItem>
+          </Grid>
+        </VStack>
       </VStack>
       <VStack
         w="100%"

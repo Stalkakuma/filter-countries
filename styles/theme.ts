@@ -12,9 +12,6 @@ const solid = defineStyle({
     boxShadow: "1px 1px black",
     color: "white",
   },
-  _hover: {
-    transform: "scale(1.03)",
-  },
 });
 
 export const buttonTheme = defineStyleConfig({
