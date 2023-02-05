@@ -29,7 +29,7 @@ export const theme = extendTheme({
   },
   colors: {
     menuGray: "#556E86",
-    activeOrange: "#ff422a",
+    activeOrange: "#D02D22",
     shadowBlack: "#485F78",
     buttonHover: "#eb0231",
     buttonActive: "#fc0000",
@@ -37,9 +37,14 @@ export const theme = extendTheme({
   shadows: {
     default: "2px 1px var(--chakra-colors-shadowBlack)",
     active: "2px 1px var(--chakra-colors-activeOrange)",
+    pagination: "1px 1px var(--chakra-colors-menuGray)",
+    paginationActive: "1px 1px var(--chakra-colors-activeOrange)",
   },
   borders: {
     cardDefault: "3px solid var(--chakra-colors-shadowBlack)",
+    pagination: "1px solid var(--chakra-colors-menuGray)",
+    paginationActive: "1px solid var(--chakra-colors-activeOrange)",
+    paginationActiveHover: "1px var(--chakra-colors-buttonActive)",
   },
   styles: {
     global: {

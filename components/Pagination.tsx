@@ -26,24 +26,21 @@ export const Pagination: FC<PaginationProps> = ({
     pagesCount > currentPage - 1 + paginationPerPage;
 
   const EmptyDots = () => {
-    return <Flex w={"13.3px"}></Flex>;
+    return <Flex w="13.3px"></Flex>;
   };
   const EmptyArrow = () => {
-    return <Flex w={"12px"}></Flex>;
+    return <Flex w="12px"></Flex>;
   };
 
   const LeftArrow = () => (
     <>
       {currentPage > 1 ? (
-        <ListItem
-          onClick={() => onPageChange(currentPage - 1)}
-          alignSelf={"end"}
-        >
+        <ListItem onClick={() => onPageChange(currentPage - 1)} alignSelf="end">
           <ArrowLeftIcon
-            cursor={"pointer"}
-            color={"menuGray"}
+            cursor="pointer"
+            color="menuGray"
             _hover={{ color: "activeOrange" }}
-            boxSize={"12px"}
+            boxSize="12px"
           />
         </ListItem>
       ) : (
@@ -54,15 +51,12 @@ export const Pagination: FC<PaginationProps> = ({
   const RightArrow = () => (
     <>
       {currentPage < pagesCount ? (
-        <ListItem
-          onClick={() => onPageChange(currentPage + 1)}
-          alignSelf={"end"}
-        >
+        <ListItem onClick={() => onPageChange(currentPage + 1)} alignSelf="end">
           <ArrowRightIcon
-            cursor={"pointer"}
-            color={"menuGray"}
+            cursor="pointer"
+            color="menuGray"
             _hover={{ color: "activeOrange" }}
-            boxSize={"12px"}
+            boxSize="12px"
           />
         </ListItem>
       ) : (
@@ -74,10 +68,10 @@ export const Pagination: FC<PaginationProps> = ({
     <>
       {currentPage > paginationPerPage ? (
         <ListItem
-          alignSelf={"end"}
+          alignSelf="end"
           onClick={() => onPageChange(currentPage - paginationPerPage)}
-          color={"menuGray"}
-          cursor={"pointer"}
+          color="menuGray"
+          cursor="pointer"
           _hover={{ color: "activeOrange" }}
         >
           ...
@@ -93,10 +87,10 @@ export const Pagination: FC<PaginationProps> = ({
       {isThereMorePagination ? (
         <ListItem
           onClick={() => onPageChange(currentPage + paginationPerPage)}
-          color={"menuGray"}
-          cursor={"pointer"}
+          color="menuGray"
+          cursor="pointer"
           _hover={{ color: "activeOrange" }}
-          alignSelf={"end"}
+          alignSelf="end"
         >
           ...
         </ListItem>
@@ -107,14 +101,7 @@ export const Pagination: FC<PaginationProps> = ({
   );
 
   return (
-    <Flex
-      as={List}
-      gap={1}
-      justify="center"
-      align="center"
-      w={"100%"}
-      h={"100%"}
-    >
+    <Flex as={List} gap={1} justify="center" align="center">
       <LeftArrow />
       <LeftDots />
       {pages
@@ -148,17 +135,17 @@ const PaginationItem = ({
     <ListItem
       bg={isActive ? "activeOrange" : "white"}
       color={isActive ? "white" : "menuGray"}
-      border={isActive ? "1px solid #ff422a" : "1px solid #999"}
-      boxShadow={isActive ? "1px 1px #999" : "0.5px 0.5px #999"}
-      rounded={"full"}
-      w={"25px"}
-      cursor={"pointer"}
+      border={isActive ? "paginationActive" : "pagination"}
+      boxShadow="pagination"
+      rounded="full"
+      w="25px"
+      cursor="pointer"
       onClick={() => onPageChange(page)}
-      transition={"ease 0.1s"}
+      transition="ease 0.1s"
       _hover={{
         color: isActive ? "white" : "activeOrange",
-        border: isActive ? "1px solid white" : `1px solid #ff422a`,
-        boxShadow: isActive ? "1px 1px #999" : "1px 1px #ff422a",
+        border: isActive ? "paginationActiveHover" : "paginationActive",
+        boxShadow: "paginationActive",
       }}
     >
       <Flex justify="center">{page}</Flex>
