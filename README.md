@@ -12,10 +12,11 @@ This app is deployed using Vercel and can be inspected [here](https://filter-cou
 2. List to display data
 3. Make the list sortable alphabetically by name (ascending, descending).
 4. Implement a filter(s) that filters countries: 
- ⋅⋅1. That are smaller than Lithuania by area.
- 
- 
+   - That are smaller/larger than Lithuania by area.
+   - That of several regions
+5. Implemented Pagination
 
+Pagination uses a helper function called range(), which is used for populating and Array from 1 to the number of pages for pagination. 
 
 ### Things to do
 
