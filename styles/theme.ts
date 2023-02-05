@@ -3,14 +3,15 @@ import "@fontsource/karla/300.css";
 import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
 
 const solid = defineStyle({
-  background: "white",
-  boxShadow: "0.2px 0.2px black",
-  border: "1px solid black",
+  bg: "activeOrange",
+  color: "white",
+  py: 3,
   transition: "ease-in 0.08s",
+  _hover: {
+    bg: "buttonHover",
+  },
   _active: {
-    background: "#ff422a",
-    boxShadow: "1px 1px black",
-    color: "white",
+    bg: "buttonActive",
   },
 });
 
@@ -30,6 +31,8 @@ export const theme = extendTheme({
     menuGray: "#556E86",
     activeOrange: "#ff422a",
     shadowBlack: "#485F78",
+    buttonHover: "#eb0231",
+    buttonActive: "#fc0000",
   },
   shadows: {
     default: "2px 1px var(--chakra-colors-shadowBlack)",

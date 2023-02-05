@@ -110,8 +110,8 @@ export const Pagination: FC<PaginationProps> = ({
     <Flex
       as={List}
       gap={1}
-      justify={"center"}
-      align={"center"}
+      justify="center"
+      align="center"
       w={"100%"}
       h={"100%"}
     >
@@ -146,7 +146,6 @@ const PaginationItem = ({
   const isActive = page === currentPage;
   return (
     <ListItem
-      mt={2}
       bg={isActive ? "activeOrange" : "white"}
       color={isActive ? "white" : "menuGray"}
       border={isActive ? "1px solid #ff422a" : "1px solid #999"}
@@ -162,7 +161,7 @@ const PaginationItem = ({
         boxShadow: isActive ? "1px 1px #999" : "1px 1px #ff422a",
       }}
     >
-      <Flex justify={"center"}>{page}</Flex>
+      <Flex justify="center">{page}</Flex>
     </ListItem>
   );
 };

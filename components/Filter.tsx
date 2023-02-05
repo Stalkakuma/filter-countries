@@ -5,6 +5,7 @@ import {
   MenuItemOption,
   MenuOptionGroup,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import { capitalize } from "@/lib/utils";
 import { MouseEventHandler } from "react";
@@ -25,7 +26,7 @@ export const Filter = ({
   return (
     <Menu>
       <MenuButton variant="solid" h="100%" w="100%" as={Button}>
-        {filter.filter}
+        <Text fontSize="lg">{filter.filter}</Text>
       </MenuButton>
       <MenuList>
         <MenuOptionGroup

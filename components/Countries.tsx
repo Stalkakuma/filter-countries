@@ -80,7 +80,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
 
   return (
     <>
-      <VStack align="start" gap={5} mt="4rem" mb="2rem">
+      <VStack align="start" gap={5} mt="4rem" mb="2rem" w="100%">
         <Search
           countryName={countryName}
           clearInput={() => clearInput()}
@@ -89,11 +89,12 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             setCountryName(e.target.value);
           }}
         />
-        <VStack>
+        <VStack w="100%">
           <Heading alignSelf={"start"} as="h2">
             Filters
           </Heading>
           <Grid
+            w="100%"
             gridTemplateColumns={{
               md: "repeat(8, 1fr)",
               base: "repeat(4, 1fr)",
@@ -119,7 +120,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
               colStart={{ md: 3, base: 1 }}
               colEnd={{ md: 8, base: 4 }}
               rowStart={{ md: 1, base: 2 }}
-              overflow="hidden"
+              alignSelf="center"
             >
               <Flex justify="center">
                 <Pagination
