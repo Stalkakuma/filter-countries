@@ -48,6 +48,10 @@ export const theme = extendTheme({
         backgroundImage:
           "linear-gradient(-225deg, #e6e6e6 0%, #f8f4f1 48%, #cfcfcf 100%)",
       },
+      main: {
+        maxW: "container.lg",
+        height: "100vh",
+      },
     },
     a: {
       textDecoration: "none",
