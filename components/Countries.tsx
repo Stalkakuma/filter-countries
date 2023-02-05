@@ -83,7 +83,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         <Grid
           gridTemplateColumns={{ md: "repeat(8, 1fr)", base: "repeat(4, 1fr)" }}
           gridTemplateRows={{ base: "repeat(2, 1fr)", md: "repeat(1, 1fr)" }}
-          gap={5}
+          gap={{ base: 2, md: 5 }}
         >
           {filters.map((filter, index) => {
             return (
@@ -125,7 +125,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         gap={2}
         mt={2}
         overflowY={"auto"}
-        maxH={"calc(100vh - 15rem)"}
+        maxH={{ md: "calc(100vh - 15rem)", base: "calc(100vh - 18rem)" }}
         p={3}
         as={motion.div}
       >
