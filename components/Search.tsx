@@ -12,7 +12,12 @@ export const Search = ({
   clearInput: () => void;
 }) => {
   return (
-    <Flex align="center" position="relative" w={{ md: "40%", base: "100%" }}>
+    <Flex
+      align="center"
+      position="relative"
+      w={{ md: "40%", base: "100%" }}
+      px={{ base: 4, md: 0 }}
+    >
       <InputGroup>
         <Input
           aria-label="search countries"

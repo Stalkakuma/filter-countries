@@ -1,4 +1,4 @@
-import { Grid, GridItem, Flex, VStack, Heading } from "@chakra-ui/react";
+import { Grid, GridItem, Flex, VStack, Text } from "@chakra-ui/react";
 import { useState, MouseEvent, ChangeEvent, FC } from "react";
 import { Filter } from "./Filter";
 import { Search } from "./Search";
@@ -70,7 +70,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             byArea.area && areaOfLithuaniaFilter === "Smaller"
               ? byArea.area <= areaOfLithuania
               : byArea.area && areaOfLithuaniaFilter === "Larger"
-              ? byArea.area > areaOfLithuania
+              ? byArea.area >= areaOfLithuania
               : byArea
           );
 
@@ -90,10 +90,11 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
           }}
         />
         <VStack w="100%">
-          <Heading alignSelf={"start"} as="h2">
-            Filters
-          </Heading>
+          <Text px={{ base: 4, md: 0 }} alignSelf="start" color="menuGray">
+            Filters:
+          </Text>
           <Grid
+            px={{ base: 4, md: 0 }}
             w="100%"
             gridTemplateColumns={{
               md: "repeat(8, 1fr)",
@@ -117,7 +118,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
               );
             })}
             <GridItem
-              colStart={{ md: 3, base: 1 }}
+              colStart={{ md: 3, base: 2 }}
               colEnd={{ md: 8, base: 4 }}
               rowStart={{ md: 1, base: 2 }}
               alignSelf="center"
@@ -131,7 +132,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
                 />
               </Flex>
             </GridItem>
-            <GridItem colStart={{ md: 8 }} colEnd={{ md: 9 }}>
+            <GridItem colStart={{ md: 8, base: 4 }} colEnd={{ md: 9 }}>
               <Sort onClick={(e: MouseEvent) => handleSort(e)} />
             </GridItem>
           </Grid>
@@ -142,7 +143,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
         align={{ base: "center", md: "start" }}
         gap={1}
         overflowY="auto"
-        maxH={{ md: "calc(100vh - 15rem)", base: "calc(100vh - 18rem)" }}
+        maxH={{ md: "calc(100vh - 18rem)", base: "calc(100vh - 20rem)" }}
         as={motion.div}
       >
         <AnimatePresence>
