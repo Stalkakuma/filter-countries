@@ -1,7 +1,29 @@
 # Filter Countries
 
 ## Description
-A UI designed to get a list of countries using [restcountries](https://restcountries.com/) API and search through that list for a specific country. Additionally filters and sorting can be applied. Includes pagination for easier navigation.
+
+A Web-app designed to get a list of countries using [restcountries](https://restcountries.com/) API and search through that list for a specific country. Additionally filters and sorting can be applied. Includes pagination for easier navigation.
+
+This app is deployed using Vercel and can be inspected [here](https://filter-countries.vercel.app/)
+
+### Things Implemented
+  
+1. Fetch, cache and display data from the API
+2. List to display data
+3. Make the list sortable alphabetically by name (ascending, descending).
+4. Implement a filter(s) that filters countries: 
+   - That are smaller/larger than Lithuania by area.
+   - That of several regions
+5. Implemented Pagination
+
+Pagination uses a helper function called range(), which is used for populating and Array from 1 to the number of pages for pagination. 
+
+### Things to do
+
+1. Filter and Sort buttons need indication that they are applied or not.
+2. Pagination and Filters should have a more consistent layout.
+3. Light and Dark mode.
+4. More color in the UI.
 
 ## Installation
 
@@ -16,21 +38,4 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
