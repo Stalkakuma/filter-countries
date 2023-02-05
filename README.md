@@ -1,7 +1,7 @@
 #Filter Countries
 
 ## Description
-A UI designed to get a list of countries using [https://restcountries.com/][restcountries] API and search through that list for a specific country. Additionally filters and sorting can be applied. Includes pagination for easier navigation.
+A UI designed to get a list of countries using [restcountries](https://restcountries.com/) API and search through that list for a specific country. Additionally filters and sorting can be applied. Includes pagination for easier navigation.
 
 ## Getting Started
 
