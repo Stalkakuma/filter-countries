@@ -30,12 +30,10 @@ export const Search = ({
           focusBorderColor={"activeOrange"}
         />
         <InputRightElement
-          cursor="pointer"
-          position="absolute"
-          right="16px"
+          cursor={countryName.length ? "pointer" : "cursor"}
           zIndex="docked"
           onClick={clearInput}
-          _hover={{ color: "activeOrange" }}
+          _hover={{ color: countryName.length ? "activeOrange" : "" }}
         >
           {countryName.length ? <CloseIcon /> : <SearchIcon />}
         </InputRightElement>
