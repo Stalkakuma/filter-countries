@@ -1,10 +1,8 @@
 import Head from "next/head";
 import { VStack } from "@chakra-ui/react";
 import { Countries } from "@/components/Countries";
-import queryClient from "../lib/clients/react-query";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { useQuery, dehydrate, QueryClient } from "react-query";
 import { fetchCountries } from "@/lib/queries/fetch-countries";
 import { LoadingScreen } from "@/components/LoadingScreen";
 
@@ -25,6 +23,7 @@ const Home: InferGetServerSidePropsType<typeof getServerSideProps> = () => {
 };
 
 const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
   await queryClient.prefetchQuery("countries", fetchCountries);
   return {
     props: {
