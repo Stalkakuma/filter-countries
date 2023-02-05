@@ -1,8 +1,8 @@
-import { Grid, GridItem, Flex } from "@chakra-ui/react";
+import { Grid, GridItem, Flex, VStack } from "@chakra-ui/react";
 import { useState, MouseEvent, ChangeEvent, FC } from "react";
 import { Filter } from "./Filter";
 import { Search } from "./Search";
-import { Card } from "./Card";
+import { CountryItem } from "./CountryItem";
 import { Country } from "../lib/types";
 import { Sort } from "./Sort";
 import { Pagination } from "./Pagination";
@@ -70,7 +70,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
 
   return (
     <>
-      <Flex flexDir={"column"} gap={5} mt={"4rem"} p={3}>
+      <VStack align="start" gap={5} mt="4rem" mb="2rem">
         <Search
           countryName={countryName}
           clearInput={() => clearInput()}
@@ -104,9 +104,9 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             colStart={{ md: 3, base: 1 }}
             colEnd={{ md: 8, base: 4 }}
             rowStart={{ md: 1, base: 2 }}
-            overflow={"hidden"}
+            overflow="hidden"
           >
-            <Flex justify={"center"}>
+            <Flex justify="center">
               <Pagination
                 currentPage={currentPage}
                 onPageChange={(page) => setCurrentPage(page)}
@@ -119,21 +119,20 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
             <Sort onClick={(e: MouseEvent) => handleSort(e)} />
           </GridItem>
         </Grid>
-      </Flex>
-      <Flex
-        flexDir={"column"}
-        gap={2}
-        mt={2}
-        overflowY={"auto"}
+      </VStack>
+      <VStack
+        w="100%"
+        align={{ base: "center", md: "start" }}
+        gap={1}
+        overflowY="auto"
         maxH={{ md: "calc(100vh - 15rem)", base: "calc(100vh - 18rem)" }}
-        p={3}
         as={motion.div}
       >
         <AnimatePresence>
           {filteredCountriesListed
             .slice(indexOfFirstCountry, indexOfLastCountry)
             .map((country, index) => (
-              <Card
+              <CountryItem
                 key={index}
                 name={country.name}
                 region={country.region}
@@ -141,7 +140,7 @@ export const Countries: FC<CountriesProps> = ({ countries }) => {
               />
             ))}
         </AnimatePresence>
-      </Flex>
+      </VStack>
     </>
   );
 };

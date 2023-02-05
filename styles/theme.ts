@@ -32,6 +32,14 @@ export const theme = extendTheme({
   colors: {
     menuGray: "#556E86",
     activeOrange: "#ff422a",
+    shadowBlack: "#485F78",
+  },
+  shadows: {
+    default: "2px 1px var(--chakra-colors-shadowBlack)",
+    active: "2px 1px var(--chakra-colors-activeOrange)",
+  },
+  borders: {
+    cardDefault: "3px solid var(--chakra-colors-shadowBlack)",
   },
   styles: {
     global: {
@@ -51,6 +59,9 @@ export const theme = extendTheme({
       main: {
         maxW: "container.lg",
         height: "100vh",
+      },
+      "h2, h3": {
+        color: "black",
       },
     },
     a: {
